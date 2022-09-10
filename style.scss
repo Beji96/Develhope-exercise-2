@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+$primaryBodyColor: red;
+$primaryGreen: green;
+$primaryBlue: blue;
+$primaryDarkGreen: darkgreen;
+$primaryFontSize: 1rem;
+//Mixins
+@mixin article-box(
+  $text-color: $primaryBlue,
+  $border-color: $primaryGreen,
+  $font-size: 1rem
+) {
+  flex: 1;
+  padding: 20px 10px;
+  border: 1px solid $border-color;
+  color: $text-color;
+  font-size: $font-size;
+}
+
+/*Layout*/
+div {
+  border: 1px solid $primaryBodyColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  margin-top: 1em;
+
+  h1 {
+    margin-bottom: 1em;
+    color: $primaryGreen;
+    border-bottom: 1px solid $primaryBlue;
+  }
+}
+
+section {
+  display: flex;
+
+  article {
+    @include article-box;
+
+    &:nth-of-type(even) {
+      @include article-box($primaryBodyColor);
+    }
+  }
+
+  &:nth-of-type(2) {
+    margin-top: 10px;
+
+    article {
+      @include article-box($primaryGreen, $primaryBlue, 24px);
+    }
+  }
+}
